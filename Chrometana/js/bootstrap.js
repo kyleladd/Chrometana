@@ -18,6 +18,9 @@ function convertURL(url){
     if(storageChange=="Wow.com"){
         return url.replace(/.*:\/\/www.bing.com/, "http://us.wow.com");
     }
+	if(storageChange=="Qwant.com"){
+		return url.replace("www.bing.com/search","www.qwant.com");
+	}
     return url.replace("www.bing.com/search", "www.google.com/search");
 }
 chrome.storage.sync.get('search_engine', function (obj) {
