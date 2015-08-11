@@ -1,5 +1,16 @@
+function isCortanaQuery(url){
+	if(url.search(/form=(WNSGPH|WNSBOX)/)==-1){ //Cortana queries contain theses param.
+		return false;
+	}
+	else {
+		return true;
+	}
+};
 var storageChange="Google.com";
 function convertURL(url){
+	if(!isCortanaQuery(url)) {
+		return url;
+	}	
     if(storageChange=="Google.com"){
         return url.replace("www.bing.com/search", "www.google.com/search");
     }
