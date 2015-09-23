@@ -25,17 +25,17 @@
 		<div id="status"></div>
 		<div class="container">
 			<div class="row engines">
-				<div class="col-md-4 selector" value="Google.com">
+				<div class="col-md-4 selector" value="https://www.google.com/search?q=">
 					<div>
 						<img class="selectorimage" src="http://chrometana.theo.li/wp-content/uploads/2015/08/google.png"/>
 					</div>
 				</div>
-				<div class="col-md-4 selector" value="DuckDuckGo.com">
+				<div class="col-md-4 selector" value="https://www.duckduckgo.com?q=">
 					<div>
 						<img class="selectorimage" src="http://chrometana.theo.li/wp-content/uploads/2015/08/duckDuckGo.png"/>
 					</div>
 				</div>
-				<div class="col-md-4 selector" value="Yahoo.com">
+				<div class="col-md-4 selector" value="https://search.yahoo.com/search?p=">
 					<div>
 						<img class="selectorimage" src="http://chrometana.theo.li/wp-content/uploads/2015/08/yahoo.png"/>
 					</div>
@@ -47,10 +47,8 @@
 			<input type="checkbox" class="toggle" id="additional-settings-toggle" />
 			<label class="settings-btn btn" for="additional-settings-toggle">Additional Settings</label>
 			<div class="expandable" id="additional_settings_container">
-				<form>
 					<div class="form-group"><input type="checkbox" id="enable_open_website" /><label for="enable_open_website">Enable "Open Website"</label><br /></div>
-					<div class="form-group"><label for="custom_engine">Custom Search Engine</label><input id="custom_engine" class="form-control" placeholder="https://"> <button class="btn btn-default" id="custom_engine_update">Update</button></div>
-				</form>
+					<div class="form-group"><label for="custom_engine">Custom Search Engine</label><input id="custom_engine" class="form-control" placeholder="http://www.ask.com/web?q="> <button class="btn btn-default" id="custom_engine_update">Update</button></div>
 			</div>
 
 		</div>
