@@ -19,7 +19,7 @@ function convertURL(url){
     }
     return storageChange + uri;
 }
-chrome.storage.sync.get('search_engine', function (obj) {
+chrome.storage.sync.get({search_engine: defaultEngine}, function (obj) {
     log('myKey', obj);
     storageChange = obj['search_engine'];
 });
@@ -42,6 +42,8 @@ chrome.runtime.onInstalled.addListener(function(details){
     else if(details.reason == "update"){
         var thisVersion = chrome.runtime.getManifest().version;
         console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
+        //Update the previous search engine naming convention to the current so users don't lose their settings 
+
     }
 });
 // Fallback when Chrome is not already running

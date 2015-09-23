@@ -63,7 +63,12 @@ for (i = 0; i <  selectorList.length; i++) {
 
 document.getElementById('custom_engine_update').addEventListener('click', function() {
   var element = document.getElementById('custom_engine');
-  save_options(element,element.value);
+  if(element.value.toLowerCase().contains("http")){
+    save_options(element,element.value);
+  }
+  else{
+    alert("Custom search engine must start with http");
+  }
 });
 
 function addClass(element, classNameToAdd) {
@@ -75,3 +80,6 @@ function addClass(element, classNameToAdd) {
 function removeClass(element, classNameToAdd) {
   element.className = element.className.replace(classNameToAdd, '');
 }
+String.prototype.contains = function(text) {
+  return this.indexOf(text) !== -1;
+};
