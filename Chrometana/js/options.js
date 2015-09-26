@@ -2,7 +2,7 @@ function save_options(key, element, value) {
   var options = {};
   options[key] = value;
   if(key == "custom_engine"){
-    options['search_engine'] = "Custom";
+    options.search_engine = "Custom";
   }
   chrome.storage.sync.set(options, function() {
     restore_options();
@@ -63,11 +63,12 @@ if (getURLVariable("newinstall") == "yes"){
   installadvice.textContent = 'To come back to this page at any time, go to Chrome Settings, open Extensions, and click Options underneath Chrometana';
 }
 
+optionCaller = function() {
+  save_options('search_engine',this, this.getAttribute('value'));
+};
 
 for (i = 0; i <  selectorList.length; i++) {
-  selectorList[i].addEventListener('click', function() {
-    save_options('search_engine',this, this.getAttribute('value'))
-  });
+  selectorList[i].addEventListener('click', optionCaller,false);
 }
 
 document.getElementById('custom_engine_update').addEventListener('click', function() {
@@ -85,7 +86,6 @@ function addClass(element, classNameToAdd) {
     element.className = element.className + ' ' + classNameToAdd;
   }
 }
-
 
 function removeClass(element, classNameToAdd) {
   element.className = element.className.replace(classNameToAdd, '');

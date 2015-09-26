@@ -8,8 +8,8 @@ function convertURL(url){
     log(url);
     log(uri);
     log(storageChange);
-    var match = /^((go\+to\+)|(open\+)|())([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(uri)
-    log(match)
+    var match = /^((go\+to\+)|(open\+)|())([0-9a-zA-Z-._~:\/?#[\]@!$'()*+,;=%]*\.[a-z]+)/i.exec(uri);
+    log(match);
     if(match){
         return "http://" + match[5];
     }
@@ -32,20 +32,20 @@ function convertURL(url){
 }
 chrome.storage.sync.get(['search_engine','custom_engine'], function (obj) {
     log('myKey', obj);
-    storageChange = obj['search_engine'];
+    storageChange = obj.search_engine;
     if(storageChange == "Custom"){
-        custom_engine = obj['custom_engine'];
+        custom_engine = obj.custom_engine;
     }
 });
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {  
     log(changes);
-    if(typeof changes['search_engine'] !== "undefined"){
-        storageChange = changes['search_engine']['newValue'];
+    if(typeof changes.search_engine !== "undefined"){
+        storageChange = changes.search_engine.newValue;
     } 
     if(storageChange == "Custom"){
-        if(typeof changes['custom_engine'] !== "undefined"){
-            custom_engine = changes['custom_engine']['newValue'];
+        if(typeof changes.custom_engine !== "undefined"){
+            custom_engine = changes.custom_engine.newValue;
         } 
     }
     log(storageChange);
