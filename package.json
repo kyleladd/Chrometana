@@ -7,6 +7,6 @@
     "jshint": "^2.6.0"
   },
   "scripts": {
-    "test": "find Chrometana/ -name '*.js' -print0 | xargs -0 ./node_modules/jshint/bin/jshint"
+    "test": "jshint --exclude ./node_modules ."
   }
 }
