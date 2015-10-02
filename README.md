@@ -6,6 +6,8 @@ Chrometana
 
 [Link to the Chrometana blog](http://Chrometana.Theo.li)
 
+![Travis](https://travis-ci.org/kyleladd/Chrometana.svg?branch=master)
+
 INTRODUCTION
 ------------
 With the introduction of Windows 10 to the general public, Bing use is growing rampant. Many aren't using Bing by choice, especially Cortana users. Chrometana aims to force all Bing searches made in Chrome to be redirected to a search engine of the user's choice

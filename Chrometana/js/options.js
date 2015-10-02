@@ -2,7 +2,7 @@ function save_options(key, element, value) {
   var options = {};
   options[key] = value;
   if(key == "custom_engine"){
-    options['search_engine'] = "Custom";
+    options.search_engine = "Custom";
   }
   chrome.storage.sync.set(options, function() {
     restore_options();
@@ -18,19 +18,18 @@ function restore_options() {
     updateDisplay(items);
   });
 }
+
 function updateDisplay(items){
   for (i = 0; i <  selectorList.length; i++) {
     if (selectorList[i].getAttribute('value') == items.search_engine) {
       addClass(selectorList[i], 'selected');
       document.getElementById("webpage_diagram_placeholder").className = selectorList[i].getAttribute("data-icon-class");
-
     }
     else {
       removeClass(selectorList[i], 'selected');
     }
   }
   document.getElementById("custom_engine").value = items.custom_engine;
-
   var status = document.getElementById('status');
     status.textContent = 'New search engine preferences saved.';
     setTimeout(function() {
@@ -58,14 +57,14 @@ if (getURLVariable("newinstall") == "yes"){
   addClass(installadvice, 'visible');
 }
 
+optionCaller = function() {
+  save_options('search_engine',this, this.getAttribute('value'));
+};
 
 for (i = 0; i <  selectorList.length; i++) {
-  selectorList[i].addEventListener('click', function() {
-    save_options('search_engine',this, this.getAttribute('value'))
-  });
+  selectorList[i].addEventListener('click', optionCaller,false);
   selectorList[i].addEventListener('mouseover', function() {
     handleMouseover(this);
-  });
   selectorList[i].addEventListener('mouseleave', function() {
     handleMouseout(this);
   })
@@ -88,8 +87,7 @@ document.getElementById('additional-settings-toggle').addEventListener('click', 
   } else {
     addClass(settingsPane, 'open');
   }
-})
-
+}
 function handleMouseover(element) {
   selectedElements = document.getElementsByClassName('selected');
   for (i = 0; i <  selectedElements.length; i++) {
@@ -101,7 +99,10 @@ function handleMouseover(element) {
 function handleMouseout(element) {
   removeClass(element, 'selected');
   restore_options();
-}
+  }
+  else{
+    alert("Custom search engine must start with http");
+  }
 
 function addClass(element, classNameToAdd) {
   if (!element.className.includes(classNameToAdd)) {
@@ -112,6 +113,7 @@ function addClass(element, classNameToAdd) {
 function removeClass(element, classNameToAdd) {
   element.className = element.className.replace(classNameToAdd, '');
 }
+
 String.prototype.contains = function(text) {
   return this.indexOf(text) !== -1;
 };
